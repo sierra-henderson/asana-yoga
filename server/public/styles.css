@@ -1,0 +1,11 @@
+.contain {
+  object-fit: contain;
+}
+
+.same-height {
+  height: 300px;
+}
+
+.product-container {
+  margin: 50px auto;
+}
