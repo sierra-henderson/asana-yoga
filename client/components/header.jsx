@@ -4,10 +4,12 @@ export default class Header extends React.Component {
   render() {
     return (
       <nav className="navbar navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
-          <i className="fas fa-dollar-sign"></i>
-          Wicked Sales
-        </a>
+        <div className="ml-5">
+          <a className="navbar-brand" href="#">
+            <i className="fas fa-dollar-sign mr-1"></i>
+              Wicked Sales
+          </a>
+        </div>
       </nav>
     );
   }
