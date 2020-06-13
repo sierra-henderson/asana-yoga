@@ -15,7 +15,6 @@ export default class ProductDetails extends React.Component {
         this.setState({
           product: data
         });
-        // console.log(data);
       });
   }
 
@@ -33,7 +32,7 @@ export default class ProductDetails extends React.Component {
                 <h3 className="card-title">{this.state.product.name}</h3>
                 <h5 className="card-text">{`$${(this.state.product.price / 100).toFixed(2)}`}</h5>
                 <p className="card-text">{this.state.product.shortDescription}</p>
-                <button className="btn btn-primary">Add to Cart</button>
+                <button className="btn btn-primary" onClick={() => this.props.addToCart(this.state.product)}>Add to Cart</button>
               </div>
             </div>
             <p className="card-text">{this.state.product.longDescription}</p>
