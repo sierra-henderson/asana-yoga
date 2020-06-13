@@ -80,6 +80,7 @@ app.post('/api/cart', (req, res, next) => {
   const productIdInt = parseInt(productId);
   if (!Number.isInteger(productIdInt) || productIdInt <= 0) {
     next(new ClientError('productId must be a positive number', 400));
+    return;
   }
   const sql = `
   select "price",
@@ -91,7 +92,7 @@ app.post('/api/cart', (req, res, next) => {
     .then(result => {
       const product = result.rows[0];
       if (!product) {
-        next(new ClientError(`Cannot find product with "productId" ${productId}`, 404));
+        throw new ClientError(`Cannot find product with "productId" ${productId}`, 404);
       } else {
         if (!req.session.cartId) {
           const sql = `
@@ -109,9 +110,7 @@ app.post('/api/cart', (req, res, next) => {
       }
     })
     .then(otherResult => {
-      if (!req.session.cartId) {
-        req.session.cartId = otherResult.cartId;
-      }
+      req.session.cartId = otherResult.cartId;
       const params = [req.session.cartId, otherResult.productId, otherResult.price];
       const sql = `
       insert into "cartItems" ("cartId", "productId", "price")
