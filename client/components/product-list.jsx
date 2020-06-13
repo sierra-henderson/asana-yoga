@@ -24,7 +24,6 @@ export default class ProductList extends React.Component {
         this.setState({
           products: data
         });
-        console.log('Full List', data);
       });
   }
 
