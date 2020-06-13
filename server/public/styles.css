@@ -9,3 +9,7 @@
 .product-container {
   margin: 50px auto;
 }
+
+.card {
+  padding: 30px 15px;
+}
