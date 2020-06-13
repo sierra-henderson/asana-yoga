@@ -14,6 +14,7 @@ export default class App extends React.Component {
       cart: []
     };
     this.setView = this.setView.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +23,7 @@ export default class App extends React.Component {
       .then(data => this.setState({ message: data.message || data.error }))
       .catch(err => this.setState({ message: err.message }))
       .finally(() => this.setState({ isLoading: false }));
+    this.getCartItems();
   }
 
   setView(name, params) {
@@ -47,7 +49,7 @@ export default class App extends React.Component {
     const listOrDetails = this.state.view.name === 'catalog' ? <ProductList view={this.setView} /> : <ProductDetails params={this.state.view.params} setView={this.setView}/>;
     return (
       <div>
-        <Header />
+        <Header cartNumber={this.state.cart.length}/>
         {listOrDetails}
       </div>
     );
