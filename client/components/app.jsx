@@ -67,7 +67,7 @@ export default class App extends React.Component {
     const viewSwitch = this.state.view.name === 'catalog'
       ? <ProductList view={this.setView} />
       : this.state.view.name === 'cart'
-        ? <CartSummary products={this.state.cart} />
+        ? <CartSummary products={this.state.cart} setView={this.setView}/>
         : <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView}/>;
     return (
       <div>
