@@ -10,6 +10,28 @@
   margin: 50px auto;
 }
 
+.catalog-button {
+  padding-top: 3rem;
+}
+
 .card {
   padding: 30px 15px;
+}
+
+.cart-item {
+  height: 350px;
+  display: flex;
+  align-items: center;
+}
+
+.cart-image {
+  height: 300px;
+}
+
+.cart-total {
+  margin-top: 2rem;
+}
+
+.sub-div {
+  height: 100%;
 }

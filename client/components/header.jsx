@@ -12,7 +12,7 @@ export default class Header extends React.Component {
           </a>
           <div className="row text-white">
             {cartHeaderText}
-            <i className="fas fa-shopping-cart fa-lg text-white ml-2"></i>
+            <i className="fas fa-shopping-cart fa-lg text-white ml-2" onClick={() => this.props.setView('cart', {})}></i>
           </div>
         </div>
       </nav>
