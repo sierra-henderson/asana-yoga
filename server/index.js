@@ -151,7 +151,7 @@ app.post('/api/orders', (req, res, next) => {
       const sql = `
       insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
       values ($1, $2, $3, $4)
-      returning *
+      returning "creditCard", "name", "shippingAddress", "orderId", "createdAt"
       `;
       const params = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
       return db.query(sql, params)
