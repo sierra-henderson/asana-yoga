@@ -143,7 +143,24 @@ app.post('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/orders', (req, res, next) => {
+  if (!req.session.cartId) {
+    next(new ClientError('there is no cart connected to this order', 400));
 
+  } else {
+    if (req.body.name && req.body.creditCard && req.body.shippingAddress) {
+      const sql = `
+      insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+      values ($1, $2, $3, $4)
+      returning *
+      `;
+      const params = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
+      return db.query(sql, params)
+        .then(result => {
+          res.status(201).json(result.rows[0]);
+          delete req.session.cartId;
+        });
+    }
+  }
 });
 
 app.use('/api', (req, res, next) => {
