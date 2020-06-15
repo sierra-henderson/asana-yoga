@@ -8,9 +8,9 @@ export default class CheckoutForm extends React.Component {
       creditCardValue: '',
       shippingAddressValue: ''
     };
-    this.handleChange = this.handleNameChange.bind(this);
-    this.handleChange = this.handleCreditCardChange.bind(this);
-    this.handleChange = this.handleShippingAddressChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleCreditCardChange = this.handleCreditCardChange.bind(this);
+    this.handleShippingAddressChange = this.handleShippingAddressChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -24,29 +24,30 @@ export default class CheckoutForm extends React.Component {
     callback(obj);
   }
 
-  handleNameChange() {
+  handleNameChange(event) {
     this.setState({
       nameValue: event.target.value
     });
   }
 
-  handleCreditCardChange() {
+  handleCreditCardChange(event) {
     this.setState({
       creditCardValue: event.target.value
     });
   }
 
-  handleShippingAddressChange() {
+  handleShippingAddressChange(event) {
     this.setState({
       shippingAddressValue: event.target.value
     });
   }
 
   render() {
+    const totalPrice = this.props.products.reduce((acc, cur) => acc + (cur.price / 100), 0).toFixed(2);
     return (
       <div className="container">
         <h1>My Cart</h1>
-        <h4 className="text-muted">Order Total: $167.98</h4>
+        <h4 className="text-muted">{`Order Total: $${totalPrice}`}</h4>
         <form onSubmit={() => this.handleSubmit(this.props.placeOrder)}>
           <div className="form-group">
             <label htmlFor="name">Name</label>
@@ -61,7 +62,7 @@ export default class CheckoutForm extends React.Component {
             <textarea className="form-control" id="shippingAddress" rows="3" value={this.state.shippingAddressValue} onChange={this.handleShippingAddressChange}></textarea>
           </div>
           <div className="d-flex justify-content-between">
-            <p>&lt; Continue Shopping</p>
+            <p onClick={() => this.props.setView('catalog', {})}>&lt; Continue Shopping</p>
             <button type="submit" className="btn btn-outline-primary ml-2">Place Order</button>
           </div>
         </form>
