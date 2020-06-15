@@ -22,7 +22,10 @@ export default class CartSummary extends React.Component {
             return <CartSummaryItem key={product.cartItemId} product={product}/>;
           })
         }
-        <h5 className="cart-total">{`Item Total $${totalPrice}`}</h5>
+        <div className="d-flex justify-content-between">
+          <h5 className="cart-total">{`Item Total $${totalPrice}`}</h5>
+          <button className="btn btn-primary" onClick={this.props.setView('checkout', {})}>Checkout</button>
+        </div>
       </div>
     );
   }
