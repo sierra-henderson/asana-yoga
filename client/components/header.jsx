@@ -10,7 +10,7 @@ export default class Header extends React.Component {
             <i className="fas fa-dollar-sign mr-1"></i>
               Wicked Sales
           </a>
-          <div className="row text-white">
+          <div className="row text-white d-flex align-items-center">
             {cartHeaderText}
             <i className="fas fa-shopping-cart fa-lg text-white ml-2" onClick={() => this.props.setView('cart', {})}></i>
           </div>
