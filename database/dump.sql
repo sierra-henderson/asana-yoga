@@ -229,24 +229,7 @@ ALTER TABLE ONLY public.products ALTER COLUMN "productId" SET DEFAULT nextval('p
 --
 
 COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
-1	21	1	2999
-2	22	1	2999
-3	23	1	2999
-4	24	1	2999
-5	25	1	2999
-6	26	1	2999
-7	27	1	2999
-8	28	1	2999
-9	29	1	2999
-10	30	1	2999
-11	31	1	2999
-12	32	1	2999
-13	32	1	2999
-23	33	3	2900
-24	34	3	2900
-25	34	2	2595
-26	34	3	2900
-27	34	3	2900
+46	44	4	4495
 \.
 
 
@@ -255,19 +238,7 @@ COPY public."cartItems" ("cartItemId", "cartId", "productId", price) FROM stdin;
 --
 
 COPY public.carts ("cartId", "createdAt") FROM stdin;
-21	2020-06-13 00:41:47.733369+00
-22	2020-06-13 00:44:01.20758+00
-23	2020-06-13 00:44:44.503487+00
-24	2020-06-13 00:45:13.799973+00
-25	2020-06-13 00:53:53.737528+00
-26	2020-06-13 00:54:18.525711+00
-27	2020-06-13 01:50:01.740861+00
-28	2020-06-13 01:54:02.992585+00
-29	2020-06-13 02:10:51.806703+00
-30	2020-06-13 02:14:44.426811+00
-31	2020-06-13 02:15:31.019964+00
-32	2020-06-13 02:15:54.944213+00
-34	2020-06-13 23:19:38.9401+00
+44	2020-07-10 23:02:32.753192+00
 \.
 
 
@@ -276,6 +247,7 @@ COPY public.carts ("cartId", "createdAt") FROM stdin;
 --
 
 COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", "createdAt") FROM stdin;
+23	44	Sierra Henderson	5555 5555 5555 5555	123 Fake St.\nCity, State 00987	2020-07-10 23:02:55.288674+00
 \.
 
 
@@ -284,12 +256,16 @@ COPY public.orders ("orderId", "cartId", name, "creditCard", "shippingAddress", 
 --
 
 COPY public.products ("productId", name, price, image, "shortDescription", "longDescription") FROM stdin;
-1	Shake Weight	2999	/images/shake-weight.jpg	Dynamic Inertia technology ignites muscles in arms, shoulders, and chest.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-2	ShamWow	2595	/images/shamwow.jpg	It's like a chamois, towel, and sponge, all in one! Soaks up to 10x it's weight in any liquid!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-3	Snuggie	2900	/images/snuggie.jpg	Super-Soft Fleece with pockets! One Size fits all Adults! Keeps you Warm & Your Hands-Free!	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-4	Wax Vac	999	/images/wax-vac.jpg	Gentle way to remove ear wax. Safe and hygienic. Reduces the risk of painful infections.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-5	Ostrich Pillow	9900	/images/ostrich-pillow.jpg	Create your own snugly space in the world and feel-good anywhere with the ultimate cocoon pillow.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
-6	Tater Mitts	830	/images/tater-mitts.jpg	8 Seconds is all you need with Tater Mitts. Quickly and easily prepare all your favorite potato dishes with Tater Mitts.	Lorem ipsum dolor amet fashion axe pour-over jianbing, adaptogen waistcoat tacos master cleanse pitchfork next level. Thundercats pour-over chartreuse 90's. Master cleanse hot chicken ennui offal. Freegan slow-carb offal hell of. Umami polaroid wolf slow-carb next level. Gentrify cardigan seitan, kombucha tacos chambray roof party typewriter man braid. Tote bag lo-fi hell of chia fam hammock\\n.Aesthetic photo booth la croix, vaporware leggings biodiesel man braid tumeric skateboard tousled slow-carb four dollar toast synth pabst pickled. Typewriter church-key chia slow-carb vice gochujang actually. Shoreditch austin woke hot chicken, single-origin coffee ugh affogato four loko green juice. Migas iPhone four dollar toast mustache.
+1	Anti-Slip Yoga Mat	5995	/images/yoga-mat.jpg	Made with natural and ethically sourced rubber, this mat is as comfortable as it is environmentally responsible.	Made with natural and ethically sourced rubber, this mat is as comfortable as it is environmentally responsible. Let the calming blue colors of the mat soothe you during your practice. The anti-gripping technology makes sure you feel secure in the most challenging of poses. Also suitable for hot yoga.
+4	Meditation Cushion	4495	/images/meditation-cushion.jpg	For those who want a little extra support while meditating, this meditation cushion has you covered.	For those who want a little extra support while meditating, this meditation cushion has you covered. The plush surface makes sure you are comfortable while still maintaining your posture. Can be used in combination with bolsters, blankets, and blocks for a more personalized meditation experience.
+5	Soothing Eye Pillow	945	/images/eye-pillow.jpeg	Enhanced with lavender sprigs and essential oils, this eye pillow helps guarantee a soothing meditation experience.	This product is inspired by one of the owner’s favorite yoga teachers, who would place homemade eye pillows beside each pupil as they made their way into Shavasana. The buckwheat kernels distribute an even amount of weight over the eyes to further induce relaxation. Enhanced with lavender sprigs and essential oils, this eye pillow helps guarantee a soothing meditation experience.
+2	Cork Yoga Block	2195	/images/cork-block.jpg	The cork material makes this block an environmentally friendly alternative to standard foam blocks without sacrificing quality.	The cork material makes this block an environmentally friendly alternative to standard foam blocks without sacrificing quality. It makes an extremely versatile prop, with three height options that can be used either alone or in combination with other props. Those with less flexibility can also use this block to do easier or restorative variations of poses.
+3	Rectangular Bolster	4545	/images/bolster-2.jpg	Ideal for people with injuries, the elderly, or beginners to ease into the practice of yoga.	Ideal for people with injuries, the elderly, or beginners to ease into the practice of yoga. A perfect prop for restorative work, this bolster can be used to support parts of the body into more relaxing poses. Also can be used in combination with other props or in chest opening exercises.
+6	Brass Singing Bowl	9995	/images/singing-bowl.jpg	Harness the powers of sound healing with this beautiful brass singing bowl.	Harness the powers of sound healing with this beautiful brass singing bowl. Whether you lead a meditation group or want to bring sound into your own practice, this singing bowl brings meditation into another level. Can also be used by itself in the home.
+7	Protective Yoga Bag	2495	/images/yoga-bag.jpg	Keep your mat looking and feeling brand new with our protective yoga bag.	Keep your mat looking and feeling brand new with our protective yoga bag. The cross-body strap makes this bag easy to carry. The durable canvas keeps your mat protected in cramped cars, smelly gym lockers and cross country moves. No matter what is going on in your life, rest easy knowing that your yoga mat is protected.
+8	Energizing Mat Wash	895	/images/mat-wash.jpg	This mat wash is specifically formulated with essential oils to keep your mat clean without any harsh chemicals.	This mat wash is specifically formulated with essential oils to keep your mat clean without any harsh chemicals. The tea tree oil is used as a natural anti-bacterial to keep your mat clean. With tangerine and lemongrass essential oils, its invigorating scent will stay after multiple uses.
+9	Woven Yoga Blanket	2045	/images/blanket.jpg	Made with natural fibers, this yoga blanket is the perfect addition to your meditation practice or yoga practice.	Made with natural fibers, this yoga blanket is the perfect addition to your meditation practice or yoga practice. The thin blanket can either be spread out thin to protect your yoga mat or be folded up thick to cushion your body. It also works well in combination with other props such as bolsters and blocks for a restorative experience.
+10	Yoga Strap	1295	/images/yoga-strap.jpg	This yoga strap will give you the extra boost you need to get deeper into stretches and hold them for a longer period of time.	This yoga strap will give you the extra boost you need to get deeper into stretches and hold them for a longer period of time. The stainless steel buckle allows the strap to be tightened into a loop, allowing you to hold your body in positions without holding onto the strap. Also helpful for beginners that need that extra help in attaining specific poses.
 \.
 
 
@@ -297,21 +273,21 @@ COPY public.products ("productId", name, price, image, "shortDescription", "long
 -- Name: cartItems_cartItemId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 27, true);
+SELECT pg_catalog.setval('public."cartItems_cartItemId_seq"', 46, true);
 
 
 --
 -- Name: carts_cartId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."carts_cartId_seq"', 34, true);
+SELECT pg_catalog.setval('public."carts_cartId_seq"', 44, true);
 
 
 --
 -- Name: orders_orderId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."orders_orderId_seq"', 1, false);
+SELECT pg_catalog.setval('public."orders_orderId_seq"', 23, true);
 
 
 --
