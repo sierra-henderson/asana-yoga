@@ -15,7 +15,9 @@ export default class CartSummary extends React.Component {
     }
     return (
       <div className="container">
-        <p className="text-muted mt-4" onClick={() => this.props.setView('catalog', {})}>&lt; Back to Catalog</p>
+        <div onClick={() => this.props.setView('catalog', {})}>
+          <i className="fas fa-angle-left mt-3 mr-2"></i>Back to Shopping
+        </div>
         <h1>My Cart</h1>
         <div className="row">
           <div className="col-8">
