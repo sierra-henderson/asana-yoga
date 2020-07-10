@@ -1,3 +1,13 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+div {
+  font-family: Kanit;
+}
+
 .contain {
   object-fit: contain;
 }
@@ -6,8 +16,18 @@
   background-color: #024059;
 }
 
+.navbar-brand {
+  text-transform: uppercase;
+  font-weight: 200;
+}
+
 .logo {
   height: 1.5rem;
+}
+
+.hero-image h1 {
+  font-family: 'Atmosphere';
+  font-size: 7rem;
 }
 
 .same-height {
