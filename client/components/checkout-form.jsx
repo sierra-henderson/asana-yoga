@@ -130,10 +130,10 @@ export default class CheckoutForm extends React.Component {
       : '';
     return (
       <div className="container">
-        <div onClick={() => this.props.setView('catalog', {})}>
+        <div className="back-to-shopping" onClick={() => this.props.setView('catalog', {})}>
           <i className="fas fa-angle-left mt-3 mr-2"></i>Back to Shopping
         </div>
-        <h1>My Cart</h1>
+        <h1 className="font-weight-bold">My Cart</h1>
         <h4 className="text-muted">{`Order Total: $${totalPrice}`}</h4>
         <form onSubmit={() => this.handleSubmit(this.props.placeOrder)}>
           <div className="form-group">
@@ -156,7 +156,7 @@ export default class CheckoutForm extends React.Component {
             <p>I acknowledge that this is purely for demonstration purposes and no real names, addresses, or credit card information should be used for the purposes of this app</p>
           </div>
           {requiredWarningCheck}
-          <button type="submit" className="btn btn-outline-primary ml-2">Place Order</button>
+          <button type="submit" className="btn asana-button ml-2">Place Order</button>
         </form>
       </div>
     );

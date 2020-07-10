@@ -15,10 +15,10 @@ export default class CartSummary extends React.Component {
     }
     return (
       <div className="container">
-        <div onClick={() => this.props.setView('catalog', {})}>
+        <div className="back-to-shopping" onClick={() => this.props.setView('catalog', {})}>
           <i className="fas fa-angle-left mt-3 mr-2"></i>Back to Shopping
         </div>
-        <h1>My Cart</h1>
+        <h1 className="font-weight-bold">My Cart</h1>
         <div className="row">
           <div className="col-8">
             {
@@ -29,10 +29,10 @@ export default class CartSummary extends React.Component {
           </div>
           <div className="col-4">
             <div className="card p-5 mt-4 text-center">
-              <h3>Item Total</h3>
+              <h3 className="font-weight-bold">Item Total</h3>
               <div className="divider mt-2 mb-3"></div>
               <h5 className="cart-total">{`$${totalPrice}`}</h5>
-              <button className="btn asana-button text-white mt-2" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+              <button className="btn asana-button mt-2" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
             </div>
           </div>
         </div>
