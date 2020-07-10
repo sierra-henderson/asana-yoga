@@ -61,8 +61,8 @@ export default class CheckoutForm extends React.Component {
             <label htmlFor="shippingAddress">Shipping Address</label>
             <textarea className="form-control" id="shippingAddress" rows="3" value={this.state.shippingAddressValue} onChange={this.handleShippingAddressChange}></textarea>
           </div>
-          <div className="d-flex justify-content-between">
-            <p onClick={() => this.props.setView('catalog', {})}>&lt; Continue Shopping</p>
+          <div className="d-flex justify-content-between align-items-center">
+            <p className="mb-0" onClick={() => this.props.setView('catalog', {})}>&lt; Continue Shopping</p>
             <button type="submit" className="btn btn-outline-primary ml-2">Place Order</button>
           </div>
         </form>

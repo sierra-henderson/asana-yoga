@@ -22,9 +22,9 @@ export default class CartSummary extends React.Component {
             return <CartSummaryItem key={product.cartItemId} product={product}/>;
           })
         }
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
           <h5 className="cart-total">{`Item Total $${totalPrice}`}</h5>
-          <button className="btn btn-primary" onClick={this.props.setView('checkout', {})}>Checkout</button>
+          <button className="btn btn-primary" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
         </div>
       </div>
     );
