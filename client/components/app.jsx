@@ -13,12 +13,14 @@ export default class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
+      cart: [],
+      modal: true
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.changeModal = this.changeModal.bind(this);
   }
 
   componentDidMount() {
@@ -31,11 +33,26 @@ export default class App extends React.Component {
   }
 
   setView(name, params) {
+    if (name === 'catalog') {
+      this.setState({
+        view: {
+          name,
+          params
+        }
+      }, this.changeModal);
+    } else {
+      this.setState({
+        view: {
+          name,
+          params
+        }
+      });
+    }
+  }
+
+  changeModal() {
     this.setState({
-      view: {
-        name,
-        params
-      }
+      modal: false
     });
   }
 
@@ -84,7 +101,7 @@ export default class App extends React.Component {
 
   render() {
     const viewSwitch = this.state.view.name === 'catalog'
-      ? <ProductList view={this.setView} />
+      ? <ProductList view={this.setView} modal={this.state.modal} changeModal={this.changeModal}/>
       : this.state.view.name === 'cart'
         ? <CartSummary products={this.state.cart} setView={this.setView}/>
         : this.state.view.name === 'checkout'
