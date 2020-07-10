@@ -57,28 +57,61 @@ export default class CheckoutForm extends React.Component {
     }));
   }
 
+  handleValidation(category) {
+    this.setState(state => ({
+      validated: {
+        ...state.validated,
+        [category]: true
+      }
+    }));
+  }
+
   handleNameChange(event) {
-    this.setState({
-      nameValue: event.target.value
-    });
+    if (event.target.value !== '') {
+      this.setState({
+        nameValue: event.target.value
+      }, () => this.handleValidation('nameValue'));
+    } else {
+      this.setState({
+        nameValue: event.target.value
+      });
+    }
   }
 
   handleCreditCardChange(event) {
-    this.setState({
-      creditCardValue: event.target.value
-    });
+    if (event.target.value !== '') {
+      this.setState({
+        creditCardValue: event.target.value
+      }, () => this.handleValidation('creditCardValue'));
+    } else {
+      this.setState({
+        creditCardValue: event.target.value
+      });
+    }
   }
 
   handleShippingAddressChange(event) {
-    this.setState({
-      shippingAddressValue: event.target.value
-    });
+    if (event.target.value !== '') {
+      this.setState({
+        shippingAddressValue: event.target.value
+      }, () => this.handleValidation('shippingAddressValue'));
+    } else {
+      this.setState({
+        shippingAddressValue: event.target.value
+      });
+    }
   }
 
   handleCheckChange(event) {
-    this.setState({
-      agree: event.target.checked
-    });
+    if (event.target.checked) {
+      this.setState({
+        agree: event.target.checked
+      }, () => this.handleValidation('agree'));
+    } else {
+      this.setState({
+        agree: event.target.checked
+      });
+    }
   }
 
   render() {
