@@ -13,7 +13,7 @@ div {
 }
 
 .nav-custom-color {
-  background-color: #024059;
+  background-color: #5AA3BF;
 }
 
 .navbar-brand {
@@ -28,6 +28,11 @@ div {
 .hero-image h1 {
   font-family: 'Atmosphere';
   font-size: 7rem;
+}
+
+.hero-image p {
+  font-size: 1.25rem;
+  font-weight: 300;
 }
 
 .same-height {
@@ -46,6 +51,10 @@ div {
   padding: 30px 15px;
 }
 
+.card-title {
+  font-weight: 700;
+}
+
 .cart-item {
   height: 250px;
   display: flex;
@@ -54,8 +63,12 @@ div {
 
 .divider {
   width: 30px;
-  border-bottom: 4px solid #8C6B58;
+  border-bottom: 4px solid #2C6673;
   margin: 0 auto;
+}
+
+.back-to-shopping {
+  margin-bottom: 1.5rem;
 }
 
 .cart-image {
@@ -69,10 +82,11 @@ div {
 .hero-image {
   width: 100%;
   height: 70vh;
-  background-image: url('/images/hero.jpeg');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/images/hero.jpeg');
   background-size: cover;
   background-position-x: right;
   background-position-y: bottom;
+  color: white;
 }
 
 .modal-overlay {
@@ -93,7 +107,15 @@ div {
 }
 
 .asana-button {
+  border: 2px solid #2C6673;
+  color: #2C6673;
+  text-transform: uppercase;
+}
+
+.asana-button:hover {
+  border: 2px solid #2C6673;
   background-color: #2C6673;
+  color: white;
 }
 
 .required {
