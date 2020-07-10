@@ -17,14 +17,22 @@ export default class CartSummary extends React.Component {
       <div className="container">
         <p className="text-muted mt-4" onClick={() => this.props.setView('catalog', {})}>&lt; Back to Catalog</p>
         <h1>My Cart</h1>
-        {
-          this.props.products.map(product => {
-            return <CartSummaryItem key={product.cartItemId} product={product}/>;
-          })
-        }
-        <div className="d-flex justify-content-between align-items-center mt-4 mb-4">
-          <h5 className="cart-total">{`Item Total $${totalPrice}`}</h5>
-          <button className="btn btn-primary" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+        <div className="row">
+          <div className="col-8">
+            {
+              this.props.products.map(product => {
+                return <CartSummaryItem key={product.cartItemId} product={product} />;
+              })
+            }
+          </div>
+          <div className="col-4">
+            <div className="card p-5 mt-4 text-center">
+              <h3>Item Total</h3>
+              <div className="divider mt-2 mb-3"></div>
+              <h5 className="cart-total">{`$${totalPrice}`}</h5>
+              <button className="btn asana-button text-white mt-2" onClick={() => this.props.setView('checkout', {})}>Checkout</button>
+            </div>
+          </div>
         </div>
       </div>
     );

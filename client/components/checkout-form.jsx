@@ -6,22 +6,26 @@ export default class CheckoutForm extends React.Component {
     this.state = {
       nameValue: '',
       creditCardValue: '',
-      shippingAddressValue: ''
+      shippingAddressValue: '',
+      agree: false
     };
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleCreditCardChange = this.handleCreditCardChange.bind(this);
     this.handleShippingAddressChange = this.handleShippingAddressChange.bind(this);
+    this.handleCheckChange = this.handleCheckChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(callback) {
     event.preventDefault();
-    const obj = {
-      name: this.state.nameValue,
-      creditCard: this.state.creditCardValue,
-      shippingAddress: this.state.shippingAddressValue
-    };
-    callback(obj);
+    if (this.state.agree && this.state.nameValue && this.state.creditCardValue && this.state.shippingAddressValue) {
+      const obj = {
+        name: this.state.nameValue,
+        creditCard: this.state.creditCardValue,
+        shippingAddress: this.state.shippingAddressValue
+      };
+      callback(obj);
+    }
   }
 
   handleNameChange(event) {
@@ -42,10 +46,17 @@ export default class CheckoutForm extends React.Component {
     });
   }
 
+  handleCheckChange(event) {
+    this.setState({
+      agree: event.target.checked
+    });
+  }
+
   render() {
     const totalPrice = this.props.products.reduce((acc, cur) => acc + (cur.price / 100), 0).toFixed(2);
     return (
       <div className="container">
+        <i className="fas fa-angle-left mt-3 mr-2"></i>Back to Shopping
         <h1>My Cart</h1>
         <h4 className="text-muted">{`Order Total: $${totalPrice}`}</h4>
         <form onSubmit={() => this.handleSubmit(this.props.placeOrder)}>
@@ -61,10 +72,11 @@ export default class CheckoutForm extends React.Component {
             <label htmlFor="shippingAddress">Shipping Address</label>
             <textarea className="form-control" id="shippingAddress" rows="3" value={this.state.shippingAddressValue} onChange={this.handleShippingAddressChange}></textarea>
           </div>
-          <div className="d-flex justify-content-between align-items-center">
-            <p className="mb-0" onClick={() => this.props.setView('catalog', {})}>&lt; Continue Shopping</p>
-            <button type="submit" className="btn btn-outline-primary ml-2">Place Order</button>
+          <div className="checkbox d-flex">
+            <input type="checkbox" className="mt-1 mr-2" checked={this.state.agree} onChange={this.handleCheckChange}/>
+            <p>I acknowledge that this is purely for demonstration purposes and no real names, addresses, or credit card information should be used for the purposes of this app</p>
           </div>
+          <button type="submit" className="btn btn-outline-primary ml-2">Place Order</button>
         </form>
       </div>
     );
