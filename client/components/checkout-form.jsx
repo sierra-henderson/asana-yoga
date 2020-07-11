@@ -156,7 +156,7 @@ export default class CheckoutForm extends React.Component {
             <p>I acknowledge that this is purely for demonstration purposes and no real names, addresses, or credit card information should be used for the purposes of this app</p>
           </div>
           {requiredWarningCheck}
-          <button type="submit" className="btn asana-button ml-2">Place Order</button>
+          <button type="submit" className="btn asana-button mt-3 mb-4">Place Order</button>
         </form>
       </div>
     );
