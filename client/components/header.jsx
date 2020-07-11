@@ -6,7 +6,7 @@ export default class Header extends React.Component {
     return (
       <nav className="navbar navbar-dark nav-custom-color">
         <div className="container d-flex align-items-center">
-          <a className="navbar-brand" href="#">
+          <a className="navbar-brand" href="#" onClick={() => this.props.setView('catalog', {})}>
             <img className="logo mr-2 mb-1" src="/images/asana-yoga.svg" alt=""/>
               Asana Yoga
           </a>
