@@ -8,6 +8,20 @@ div {
   font-family: Lato;
 }
 
+.cart-header,
+.catalog-card,
+.back-to-shopping {
+  cursor: pointer;
+}
+
+.catalog-card {
+  transition: 0.2s;
+}
+
+.catalog-card:hover {
+  transform: translateY(-0.5rem);
+}
+
 .contain {
   object-fit: contain;
 }
@@ -67,6 +81,11 @@ div {
 
 .back-to-shopping {
   margin-bottom: 1.5rem;
+  color: #6c757d;
+}
+
+.back-to-shopping:hover {
+  color: black;
 }
 
 .cart-image {
@@ -145,5 +164,11 @@ div {
 
   .cart-item {
   text-align: center;
+  }
+}
+
+@media only screen and (max-width: 825px) {
+  input[type=checkbox] {
+    transform: scale(3);
   }
 }

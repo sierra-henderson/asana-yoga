@@ -10,9 +10,9 @@ export default class Header extends React.Component {
             <img className="logo mr-2 mb-1" src="/images/asana-yoga.svg" alt=""/>
               Asana Yoga
           </a>
-          <div className="row text-white d-flex align-items-center">
+          <div className="cart-header row text-white d-flex align-items-center" onClick={() => this.props.setView('cart', {})}>
             {cartHeaderText}
-            <i className="fas fa-shopping-cart fa-lg text-white ml-2" onClick={() => this.props.setView('cart', {})}></i>
+            <i className="fas fa-shopping-cart fa-lg text-white ml-2"></i>
           </div>
         </div>
       </nav>
