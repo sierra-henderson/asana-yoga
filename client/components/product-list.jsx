@@ -1,5 +1,3 @@
-/* eslint-disable no-console, no-unused-vars */
-
 import React from 'react';
 import ProductListItem from './product-list-item';
 
@@ -20,7 +18,6 @@ export default class ProductList extends React.Component {
     fetch('/api/products')
       .then(response => response.json())
       .then(data => {
-        // eslint-disable-next-line no-console
         this.setState({
           products: data
         });
