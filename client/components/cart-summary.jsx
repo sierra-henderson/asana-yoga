@@ -29,7 +29,7 @@ export default class CartSummary extends React.Component {
               })
             }
           </div>
-          <div className="col-12 col-lg-4">
+          <div className="col-12 col-lg-4 mb-3">
             <div className="card p-5 mt-4 text-center">
               <h3 className="font-weight-bold">Item Total</h3>
               <div className="divider mt-2 mb-3"></div>
