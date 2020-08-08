@@ -10,7 +10,8 @@ div {
 
 .cart-header,
 .catalog-card,
-.back-to-shopping {
+.back-to-shopping,
+.icon {
   cursor: pointer;
 }
 
@@ -147,6 +148,80 @@ div {
 
 .product-detail-card {
   border: none;
+}
+
+.icon {
+  height: 60px;
+}
+
+.category-container {
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2C6673;
+}
+
+figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+figure img {
+  height: 60px;
+  margin-bottom: 0.75rem;
+}
+
+figure:hover {
+  color: #5AA3BF;
+}
+
+.icon {
+  height: 60px;
+  width: 100%;
+  background-size: inherit;
+  background-repeat: no-repeat;
+
+}
+
+.mat {
+  background-image: url('/images/mat-icon.svg');
+}
+
+.mat:hover,
+.mat:focus,
+.mat:active {
+  background-image: url('/images/mat-icon-hover.svg');
+}
+
+.all {
+  background-image: url('/images/all-categories-icon.svg');
+}
+
+.all:hover,
+.all:focus,
+.all:active {
+  background-image: url('/images/all-categories-icon-hover.svg');
+}
+
+.props {
+  background-image: url('/images/props-icon.svg');
+}
+
+.props:hover,
+.props:focus,
+.props:active {
+  background-image: url('/images/props-icon-hover.svg');
+}
+
+.meditation {
+  background-image: url('/images/meditation-icon.svg');
+}
+
+.meditation:hover,
+.meditation:focus,
+.meditation:active {
+  background-image: url('/images/meditation-icon-hover.svg');
 }
 
 .hidden {
