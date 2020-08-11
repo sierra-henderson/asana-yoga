@@ -148,13 +148,13 @@ app.post('/api/orders', (req, res, next) => {
     next(new ClientError('there is no cart connected to this order', 400));
 
   } else {
-    if (req.body.name && req.body.creditCard && req.body.shippingAddress) {
+    if (req.body.firstName && req.body.lastName && req.body.city && req.body.state && req.body.zipCode && req.body.creditCard && req.body.expMonth && req.body.expYear && req.body.cvv && req.body.shippingAddress) {
       const sql = `
-      insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
-      values ($1, $2, $3, $4)
-      returning "creditCard", "name", "shippingAddress", "orderId", "createdAt"
+      insert into "orders" ("cartId", "firstName", "lastName", "creditCard", "expMonth", "expYear", "cvv", "shippingAddress", "shippingAddress2", "city", "state", "zipCode")
+      values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      returning *
       `;
-      const params = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
+      const params = [req.session.cartId, req.body.firstName, req.body.lastName, req.body.creditCard, req.body.expMonth, req.body.expYear, req.body.cvv, req.body.shippingAddress, req.body.shippingAddress2, req.body.city, req.body.state, req.body.zipCode];
       return db.query(sql, params)
         .then(result => {
           delete req.session.cartId;
