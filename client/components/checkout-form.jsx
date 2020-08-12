@@ -4,20 +4,27 @@ export default class CheckoutForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nameValue: '',
+      firstNameValue: '',
+      lastNameValue: '',
       creditCardValue: '',
+      expMonthValue: '',
+      expYearValue: '',
+      cvvValue: '',
       shippingAddressValue: '',
+      cityValue: '',
+      stateValue: '',
+      zipCodeValue: '',
       agree: false,
       validated: {
         nameValue: null,
         creditCardValue: null,
+        creditCardExpValue: null,
         shippingAddressValue: null,
+        cityStateValue: null,
         agree: null
       }
     };
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleCreditCardChange = this.handleCreditCardChange.bind(this);
-    this.handleShippingAddressChange = this.handleShippingAddressChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.handleCheckChange = this.handleCheckChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRequired = this.handleRequired.bind(this);
@@ -36,14 +43,25 @@ export default class CheckoutForm extends React.Component {
       if (!this.state.agree) {
         this.handleRequired('agree');
       }
-      if (!this.state.nameValue) {
+
+      if (!this.state.firstNameValue || !this.state.lastNameValue) {
         this.handleRequired('nameValue');
       }
+
       if (!this.state.creditCardValue) {
         this.handleRequired('creditCardValue');
       }
+
+      if (!this.state.expMonthValue || !this.state.expYearValue || !this.state.cvvValue) {
+        this.handleRequired('creditCardExpValue');
+      }
+
       if (!this.state.shippingAddressValue) {
         this.handleRequired('shippingAddressValue');
+      }
+
+      if (!this.state.stateValue || !this.state.cityValue || !this.state.zipCodeValue) {
+        this.handleRequired('cityStateValue');
       }
     }
   }
@@ -66,39 +84,17 @@ export default class CheckoutForm extends React.Component {
     }));
   }
 
-  handleNameChange(event) {
+  handleInputChange(category) {
     if (event.target.value !== '') {
-      this.setState({
-        nameValue: event.target.value
-      }, () => this.handleValidation('nameValue'));
+      this.setState(state => ({
+        ...state,
+        [category]: event.target.value
+      }), () => this.handleValidation(category));
     } else {
-      this.setState({
-        nameValue: event.target.value
-      });
-    }
-  }
-
-  handleCreditCardChange(event) {
-    if (event.target.value !== '') {
-      this.setState({
-        creditCardValue: event.target.value
-      }, () => this.handleValidation('creditCardValue'));
-    } else {
-      this.setState({
-        creditCardValue: event.target.value
-      });
-    }
-  }
-
-  handleShippingAddressChange(event) {
-    if (event.target.value !== '') {
-      this.setState({
-        shippingAddressValue: event.target.value
-      }, () => this.handleValidation('shippingAddressValue'));
-    } else {
-      this.setState({
-        shippingAddressValue: event.target.value
-      });
+      this.setState(state => ({
+        ...state,
+        [category]: event.target.value
+      }));
     }
   }
 
@@ -122,8 +118,14 @@ export default class CheckoutForm extends React.Component {
     const requiredWarningAddress = this.state.validated.shippingAddressValue === false
       ? <p className="required">Please submit your full address</p>
       : '';
+    const requiredWarningCityState = this.state.validated.cityStateValue === false
+      ? <p className="required">Please submit your city, state, and zip code</p>
+      : '';
     const requiredWarningCreditCard = this.state.validated.creditCardValue === false
       ? <p className="required">Please submit a 16 digit credit card number</p>
+      : '';
+    const requiredWarningCreditCardExpiration = this.state.validated.creditCardExpValue === false
+      ? <p className="required">Please submit your credit card&apos;s expiration date and CVV</p>
       : '';
     const requiredWarningCheck = this.state.validated.agree === false
       ? <p className="required">Please acknowledge that you understand the terms</p>
@@ -137,19 +139,41 @@ export default class CheckoutForm extends React.Component {
         <h4 className="text-muted">{`Order Total: $${totalPrice}`}</h4>
         <form onSubmit={() => this.handleSubmit(this.props.placeOrder)}>
           <div className="form-group">
-            <label htmlFor="name">Name<span className="required">*</span></label>
-            <input type="text" className="form-control" name="name" id="name" value={this.state.nameValue} onChange={this.handleNameChange}/>
+            <label htmlFor="first-name">First Name<span className="required">*</span></label>
+            <input type="text" className="form-control" name="first-name" id="first-name" value={this.state.firstNameValue} onChange={() => this.handleInputChange('firstNameValue')} />
+            <label htmlFor="last-name">Last Name<span className="required">*</span></label>
+            <input type="text" className="form-control" name="last-name" id="last-name" value={this.state.lastNameValue} onChange={() => this.handleInputChange('lastNameValue')} />
             {requiredWarningName}
           </div>
           <div className="form-group">
+            <label htmlFor="shippingAddress">Address 1<span className="required">*</span></label>
+            <input className="form-control" name="shippingAddress" id="shippingAddress" value={this.state.shippingAddressValue} onChange={() => this.handleInputChange('shippingAddressValue')} />
+            <label htmlFor="shippingAddress2">Address 2</label>
+            <input className="form-control" name="shippingAddress2" id="shippingAddress2" value={this.state.shippingAddress2Value} onChange={() => this.handleInputChange('shippingAddress2Value')} />
+            {requiredWarningAddress}
+          </div>
+          <div className="form-group">
+            <label htmlFor="city">City<span className="required">*</span></label>
+            <input type="text" className="form-control" name="city" id="city" value={this.state.cityValue} onChange={() => this.handleInputChange('cityValue')} />
+            <label htmlFor="state">State<span className="required">*</span></label>
+            <input type="text" className="form-control" name="state" id="state" value={this.state.stateValue} onChange={() => this.handleInputChange('stateValue')} />
+            <label htmlFor="zipCode">Zip Code<span className="required">*</span></label>
+            <input type="text" className="form-control" name="zipCode" id="zipCode" value={this.state.zipCodeValue} onChange={() => this.handleInputChange('zipCodeValue')} />
+            {requiredWarningCityState}
+          </div>
+          <div className="form-group">
             <label htmlFor="creditCard">Credit Card<span className="required">*</span></label>
-            <input type="text" className="form-control" name="creditCard" id="creditCard" value={this.state.creditCardValue} onChange={this.handleCreditCardChange}/>
+            <input type="text" className="form-control" name="creditCard" id="creditCard" value={this.state.creditCardValue} onChange={() => this.handleInputChange('creditCardValue')} />
             {requiredWarningCreditCard}
           </div>
           <div className="form-group">
-            <label htmlFor="shippingAddress">Shipping Address<span className="required">*</span></label>
-            <textarea className="form-control" id="shippingAddress" rows="3" value={this.state.shippingAddressValue} onChange={this.handleShippingAddressChange}></textarea>
-            {requiredWarningAddress}
+            <label htmlFor="month">Month<span className="required">*</span></label>
+            <input type="text" className="form-control" name="month" id="month" value={this.state.expMonthValue} onChange={() => this.handleInputChange('expMonthValue')} />
+            <label htmlFor="year">Year<span className="required">*</span></label>
+            <input type="text" className="form-control" name="year" id="year" value={this.state.expYearValue} onChange={() => this.handleInputChange('expYearValue')} />
+            <label htmlFor="cvv">CVV<span className="required">*</span></label>
+            <input type="text" className="form-control" name="cvv" id="cvv" value={this.state.cvvValue} onChange={() => this.handleInputChange('cvvValue')} />
+            {requiredWarningCreditCardExpiration}
           </div>
           <div className="checkbox d-flex">
             <input type="checkbox" className="mt-1 mr-2" checked={this.state.agree} onChange={this.handleCheckChange}/>
