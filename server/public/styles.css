@@ -176,6 +176,10 @@ figure:hover {
   color: #5AA3BF;
 }
 
+figcaption {
+  text-align: center;
+}
+
 .icon {
   height: 60px;
   width: 100%;
@@ -224,6 +228,10 @@ figure:hover {
   background-image: url('/images/meditation-icon-hover.svg');
 }
 
+hr {
+  margin: 2rem auto 1.5rem;
+}
+
 .hidden {
   display: none;
 }
@@ -239,9 +247,5 @@ figure:hover {
 
   .cart-item {
   text-align: center;
-  }
-
-  input[type=checkbox] {
-    transform: scale(1.5);
   }
 }
