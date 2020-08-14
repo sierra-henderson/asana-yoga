@@ -143,6 +143,27 @@ app.post('/api/cart', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.delete('/api/cart', (req, res, next) => {
+  const { cartItemId } = req.body;
+  if (!Number.isInteger(parseInt(cartItemId)) || parseInt(cartItemId) < 0) {
+    next(new ClientError('cartItemId must be a positive number', 400));
+    return;
+  }
+  const sql = `
+    delete from "cartItems"
+      where "cartItemId" = $1
+  `;
+  const params = [cartItemId];
+  db.query(sql, params)
+    .then(result => {
+      const obj = {
+        cartItemId
+      };
+      res.json(obj);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/orders', (req, res, next) => {
   if (!req.session.cartId) {
     next(new ClientError('there is no cart connected to this order', 400));
