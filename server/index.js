@@ -56,15 +56,17 @@ app.get('/api/products/:productId', (req, res, next) => {
 app.get('/api/cart', (req, res, next) => {
   if (req.session.cartId) {
     const sql = `
-      select "c"."cartItemId",
+      select "p"."productId",
+              count("p"."productId") as "count",
+              array_agg ("c"."cartItemId") as "cartItemIds",
               "c"."price",
-              "p"."productId",
               "p"."image",
               "p"."name",
               "p"."shortDescription"
           from "cartItems" as "c"
           join "products" as "p" using ("productId")
         where "c"."cartId" = $1
+        group by "p"."productId", "c"."price", "p"."image", "p"."name", "p"."shortDescription"
     `;
     db.query(sql, [req.session.cartId])
       .then(result => {

@@ -25,7 +25,7 @@ export default class CartSummary extends React.Component {
           <div className="col-12 col-lg-8">
             {
               this.props.products.map(product => {
-                return <CartSummaryItem key={product.cartItemId} product={product} />;
+                return <CartSummaryItem key={product.cartItemId} deleteFromCart={this.props.deleteFromCart} product={product} />;
               })
             }
           </div>
