@@ -77,15 +77,34 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        this.setState({
-          cart: this.state.cart.concat([data])
-        });
+        if (this.state.cart.some(el => el.productId === product.productId)) {
+          let index = null;
+          for (let i = 0; i < this.state.cart.length; i++) {
+            if (this.state.cart[i].productId === product.productId) {
+              index = i;
+              break;
+            }
+          }
+          if (index > -1) {
+            const cart = [...this.state.cart];
+            const cartItem = { ...cart[index] };
+            cartItem.count++;
+            cart[index] = cartItem;
+            this.setState({
+              cart
+            });
+          }
+        } else {
+          this.setState({
+            cart: this.state.cart.concat([data])
+          });
+        }
       });
   }
 
-  deleteFromCart(cartItem) {
+  deleteFromCart(cartItemId) {
     const obj = {
-      cartItemId: cartItem
+      cartItemId
     };
     fetch('/api/cart', {
       method: 'DELETE',
@@ -96,9 +115,28 @@ export default class App extends React.Component {
     })
       .then(response => response.json())
       .then(data => {
-        this.setState(state => ({
-          cart: state.cart.filter(el => el.cartItemId !== data.cartItemId)
-        }));
+        let index = null;
+        for (let i = 0; i < this.state.cart.length; i++) {
+          if (this.state.cart[i].productId === data.productId) {
+            index = i;
+            break;
+          }
+        }
+        if (this.state.cart[index].count > 1) {
+          const cart = [...this.state.cart];
+          const cartItem = { ...cart[index] };
+          const cartItemIndex = cartItem.cartItemIds.indexOf(cartItemId);
+          cartItem.cartItemIds.splice(cartItemIndex, 1);
+          cartItem.count--;
+          cart[index] = cartItem;
+          this.setState({
+            cart
+          });
+        } else {
+          this.setState(state => ({
+            cart: state.cart.filter(el => el.productId !== data.productId)
+          }));
+        }
       });
   }
 
@@ -123,13 +161,13 @@ export default class App extends React.Component {
     const viewSwitch = this.state.view.name === 'catalog'
       ? <ProductList view={this.setView} modal={this.state.modal} changeModal={this.changeModal}/>
       : this.state.view.name === 'cart'
-        ? <CartSummary products={this.state.cart} deleteFromCart={this.deleteFromCart} setView={this.setView}/>
+        ? <CartSummary products={this.state.cart} addToCart={this.addToCart} deleteFromCart={this.deleteFromCart} setView={this.setView}/>
         : this.state.view.name === 'checkout'
           ? <CheckoutForm products={this.state.cart} placeOrder={this.placeOrder} setView={this.setView}/>
           : <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView}/>;
     return (
       <div>
-        <Header cartNumber={this.state.cart.length} setView={this.setView}/>
+        <Header cartNumber={this.state.cart.reduce((acc, cur) => acc + parseInt(cur.count), 0)} setView={this.setView}/>
         {viewSwitch}
       </div>
     );

@@ -3,7 +3,7 @@ import CartSummaryItem from './cart-summary-item';
 
 export default class CartSummary extends React.Component {
   render() {
-    const totalPrice = this.props.products.reduce((acc, cur) => acc + (cur.price / 100), 0).toFixed(2);
+    const totalPrice = this.props.products.reduce((acc, cur) => acc + (cur.price / 100 * cur.count), 0).toFixed(2);
     if (this.props.products.length === 0) {
       return (
         <div className="container">
@@ -25,7 +25,7 @@ export default class CartSummary extends React.Component {
           <div className="col-12 col-lg-8">
             {
               this.props.products.map(product => {
-                return <CartSummaryItem key={product.cartItemId} deleteFromCart={this.props.deleteFromCart} product={product} />;
+                return <CartSummaryItem key={product.productId} addToCart={this.props.addToCart} deleteFromCart={this.props.deleteFromCart} product={product} />;
               })
             }
           </div>
