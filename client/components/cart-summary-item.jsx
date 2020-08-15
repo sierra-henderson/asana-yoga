@@ -4,6 +4,7 @@ export default class CartSummaryItem extends React.Component {
   render() {
     return (
       <div className="card mt-4 cart-item row">
+        <i className="delete fas fa-times" onClick={() => this.props.deleteFromCart(this.props.product.cartItemId)}></i>
         <div className="sub-div d-flex flex-column flex-md-row align-items-center">
           <div className="col-12 col-md-5">
             <img className="col-12 mb-3 cart-image contain" src={this.props.product.image} alt="" />

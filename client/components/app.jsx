@@ -21,6 +21,7 @@ export default class App extends React.Component {
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.changeModal = this.changeModal.bind(this);
+    this.deleteFromCart = this.deleteFromCart.bind(this);
   }
 
   componentDidMount() {
@@ -82,6 +83,25 @@ export default class App extends React.Component {
       });
   }
 
+  deleteFromCart(cartItem) {
+    const obj = {
+      cartItemId: cartItem
+    };
+    fetch('/api/cart', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(obj)
+    })
+      .then(response => response.json())
+      .then(data => {
+        this.setState(state => ({
+          cart: state.cart.filter(el => el.cartItemId !== data.cartItemId)
+        }));
+      });
+  }
+
   placeOrder(order) {
     fetch('/api/orders', {
       method: 'POST',
@@ -103,7 +123,7 @@ export default class App extends React.Component {
     const viewSwitch = this.state.view.name === 'catalog'
       ? <ProductList view={this.setView} modal={this.state.modal} changeModal={this.changeModal}/>
       : this.state.view.name === 'cart'
-        ? <CartSummary products={this.state.cart} setView={this.setView}/>
+        ? <CartSummary products={this.state.cart} deleteFromCart={this.deleteFromCart} setView={this.setView}/>
         : this.state.view.name === 'checkout'
           ? <CheckoutForm products={this.state.cart} placeOrder={this.placeOrder} setView={this.setView}/>
           : <ProductDetails addToCart={this.addToCart} params={this.state.view.params} setView={this.setView}/>;
