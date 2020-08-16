@@ -56,7 +56,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 app.get('/api/cart', (req, res, next) => {
   if (req.session.cartId) {
     const sql = `
-      select "p"."productId",
+       select "p"."productId",
               count("p"."productId") as "count",
               array_agg ("c"."cartItemId") as "cartItemIds",
               "c"."price",
@@ -154,14 +154,13 @@ app.delete('/api/cart', (req, res, next) => {
   const sql = `
     delete from "cartItems"
       where "cartItemId" = $1
+      returning *
   `;
   const params = [cartItemId];
   db.query(sql, params)
     .then(result => {
-      const obj = {
-        cartItemId
-      };
-      res.json(obj);
+
+      res.json(result.rows[0]);
     })
     .catch(err => next(err));
 });
