@@ -7,8 +7,8 @@ export default class CartSummaryItem extends React.Component {
   }
 
   deleteItem(productId) {
-    while (this.props.product.cartItemIds[0]) {
-      this.props.deleteFromCart(this.props.product.cartItemIds[0]);
+    for (let i = 0; i < this.props.product.cartItemIds.length; i++) {
+      this.props.deleteFromCart(this.props.product.cartItemIds[i]);
     }
   }
 

@@ -89,12 +89,16 @@ export default class App extends React.Component {
             const cart = [...this.state.cart];
             const cartItem = { ...cart[index] };
             cartItem.count++;
+            cartItem.cartItemIds.push(data.cartItemId);
             cart[index] = cartItem;
             this.setState({
               cart
             });
           }
         } else {
+          data.count = 1;
+          data.cartItemIds = [data.cartItemId];
+          delete data.cartItemId;
           this.setState({
             cart: this.state.cart.concat([data])
           });
